@@ -398,7 +398,7 @@ class CurrencyList {
     exchangeRate = json['exchange_rate'].toString().isNotEmpty
         ? double.parse(json['exchange_rate'].toString())
         : 0.0;
-    status = json['status'];
+    status = json['status'] == 1 ? true : false;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }

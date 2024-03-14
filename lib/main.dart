@@ -50,17 +50,21 @@ import 'provider/banner_provider.dart';
 import 'provider/flash_deal_provider.dart';
 import 'provider/product_provider.dart';
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FlutterDownloader.initialize(debug: true , ignoreSsl: true);
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
   await di.init();
 
-  flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
+  flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
+      ?.requestPermission();
   await Permission.notification.isDenied.then((value) {
     if (value) {
       Permission.notification.request();
@@ -71,15 +75,14 @@ Future<void> main() async {
 
   NotificationBody? body;
   try {
-      final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
-      if (remoteMessage != null) {
-        body = NotificationHelper.convertNotification(remoteMessage.data);
-      }
-      await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
-      FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
-
-  }catch(_) {}
-
+    final RemoteMessage? remoteMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (remoteMessage != null) {
+      body = NotificationHelper.convertNotification(remoteMessage.data);
+    }
+    await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
+    FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+  } catch (_) {}
 
   await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
   FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
@@ -87,14 +90,17 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => di.sl<CategoryProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<HomeCategoryProductProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<HomeCategoryProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<TopSellerProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<FlashDealProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<FeaturedDealProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<FeaturedDealProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<BrandProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProductProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<BannerProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<ProductDetailsProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<ProductDetailsProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OnBoardingProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SearchProvider>()),
@@ -102,18 +108,24 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<CouponProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ChatProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<NotificationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<NotificationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProfileProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<WishListProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CartProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<SupportTicketProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<SupportTicketProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<GoogleSignInProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<FacebookLoginProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<GoogleSignInProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<FacebookLoginProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocationProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<WalletTransactionProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<WalletTransactionProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<CompareProvider>()),
     ],
     child: MyApp(body: body),
@@ -123,7 +135,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final NotificationBody? body;
   const MyApp({Key? key, required this.body}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -144,11 +155,15 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         FallbackLocalizationDelegate()
       ],
-      builder:(context,child){
-        return MediaQuery(data: MediaQuery.of(context).copyWith(textScaleFactor: 1), child: child!);
+      builder: (context, child) {
+        return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
+            child: child!);
       },
       supportedLocales: locals,
-      home: SplashScreen(body: body,),
+      home: SplashScreen(
+        body: body,
+      ),
     );
   }
 }
@@ -157,9 +172,12 @@ class Get {
   static BuildContext? get context => navigatorKey.currentContext;
   static NavigatorState? get navigator => navigatorKey.currentState;
 }
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

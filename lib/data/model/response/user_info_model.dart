@@ -18,22 +18,21 @@ class UserInfoModel {
 
   UserInfoModel(
       {this.id,
-        this.name,
-        this.method,
-        this.fName,
-        this.lName,
-        this.phone,
-        this.image,
-        this.email,
-        this.emailVerifiedAt,
-        this.createdAt,
-        this.updatedAt,
+      this.name,
+      this.method,
+      this.fName,
+      this.lName,
+      this.phone,
+      this.image,
+      this.email,
+      this.emailVerifiedAt,
+      this.createdAt,
+      this.updatedAt,
       this.walletBalance,
-        this.loyaltyPoint,
-        this.referCode,
-        this.referCount,
-        this.totalOrder
-      });
+      this.loyaltyPoint,
+      this.referCode,
+      this.referCount,
+      this.totalOrder});
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,34 +46,31 @@ class UserInfoModel {
     emailVerifiedAt = json['email_verified_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    if(json['wallet_balance'] != null){
+    if (json['wallet_balance'] != null) {
       walletBalance = json['wallet_balance'].toDouble();
     }
-    if(json['loyalty_point'] != null){
+    if (json['loyalty_point'] != null) {
       loyaltyPoint = json['loyalty_point'].toDouble();
-    }else{
+    } else {
       loyaltyPoint = 0.0;
     }
-    if(json['referral_code'] != null){
+    if (json['referral_code'] != null) {
       referCode = json['referral_code'];
     }
-    if(json['referral_user_count'] != null){
-      try{
+    if (json['referral_user_count'] != null) {
+      try {
         referCount = json['referral_user_count'];
-      }catch(e){
+      } catch (e) {
         referCount = int.parse(json['referral_user_count'].toString());
       }
-
     }
-    if(json['orders_count'] != null){
-      try{
+    if (json['orders_count'] != null) {
+      try {
         totalOrder = json['orders_count'].toDouble();
-      }catch(e){
+      } catch (e) {
         totalOrder = double.parse(json['orders_count'].toString());
       }
-
     }
-
   }
 
   Map<String, dynamic> toJson() {

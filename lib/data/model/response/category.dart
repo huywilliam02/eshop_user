@@ -10,18 +10,18 @@ class Category {
   List<SubCategory>? _subCategories;
   bool? isSelected;
 
-  Category(
-      {int? id,
-        String? name,
-        String? slug,
-        String? icon,
-        int? parentId,
-        int? position,
-        String? createdAt,
-        String? updatedAt,
-        List<SubCategory>? subCategories,
-        bool? isSelected,
-      }) {
+  Category({
+    int? id,
+    String? name,
+    String? slug,
+    String? icon,
+    int? parentId,
+    int? position,
+    String? createdAt,
+    String? updatedAt,
+    List<SubCategory>? subCategories,
+    bool? isSelected,
+  }) {
     _id = id;
     _name = name;
     _slug = slug;
@@ -91,18 +91,18 @@ class SubCategory {
   List<SubSubCategory>? _subSubCategories;
   bool? isSelected;
 
-  SubCategory(
-      {int? id,
-        String? name,
-        String? slug,
-        String? icon,
-        int? parentId,
-        int? position,
-        String? createdAt,
-        String? updatedAt,
-        List<SubSubCategory>? subSubCategories,
-        bool? isSelected,
-      }) {
+  SubCategory({
+    int? id,
+    String? name,
+    String? slug,
+    String? icon,
+    int? parentId,
+    int? position,
+    String? createdAt,
+    String? updatedAt,
+    List<SubSubCategory>? subSubCategories,
+    bool? isSelected,
+  }) {
     _id = id;
     _name = name;
     _slug = slug;
@@ -172,13 +172,13 @@ class SubSubCategory {
 
   SubSubCategory(
       {int? id,
-        String? name,
-        String? slug,
-        String? icon,
-        int? parentId,
-        int? position,
-        String? createdAt,
-        String? updatedAt}) {
+      String? name,
+      String? slug,
+      String? icon,
+      int? parentId,
+      int? position,
+      String? createdAt,
+      String? updatedAt}) {
     _id = id;
     _name = name;
     _slug = slug;

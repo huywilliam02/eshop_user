@@ -17,25 +17,25 @@ class AddressModel {
   String? guestId;
   String? email;
 
-  AddressModel(
-      {this.id,
-        this.customerId,
-        this.contactPersonName,
-        this.addressType,
-        this.address,
-        this.city,
-        this.zip,
-        this.phone,
-        this.createdAt,
-        this.updatedAt,
-        this.state,
-        this.country,
-        this.latitude,
-        this.longitude,
-        this.isBilling,
-        this.guestId,
-        this.email,
-      });
+  AddressModel({
+    this.id,
+    this.customerId,
+    this.contactPersonName,
+    this.addressType,
+    this.address,
+    this.city,
+    this.zip,
+    this.phone,
+    this.createdAt,
+    this.updatedAt,
+    this.state,
+    this.country,
+    this.latitude,
+    this.longitude,
+    this.isBilling,
+    this.guestId,
+    this.email,
+  });
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -53,6 +53,7 @@ class AddressModel {
     latitude = json['latitude'];
     longitude = json['longitude'];
     isBilling = json['is_billing'];
+    guestId = json['guest_id']; // Thêm dòng này để lấy giá trị guest_id từ JSON
     email = json['email'];
   }
 
