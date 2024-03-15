@@ -33,7 +33,7 @@
     </queries>
 
     <application
-        android:label="CIT GROUP SHOP"
+        android:label="CIT CLICK SHOP"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config"
