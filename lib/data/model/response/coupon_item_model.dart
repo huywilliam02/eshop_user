@@ -17,7 +17,6 @@ class CouponItemModel {
       });
     }
   }
-
 }
 
 class Coupons {
@@ -38,24 +37,24 @@ class Coupons {
   double? minPurchase;
   int? orderCount;
 
-  Coupons(
-      {this.id,
-        this.addedBy,
-        this.couponType,
-        this.couponBearer,
-        this.sellerId,
-        this.title,
-        this.code,
-        this.limit,
-        this.seller,
-        this.expireDate,
-        this.planExpireDate,
-        this.expireDatePlanText,
-        this.discount,
-        this.discountType,
-        this.minPurchase,
-        this.orderCount,
-      });
+  Coupons({
+    this.id,
+    this.addedBy,
+    this.couponType,
+    this.couponBearer,
+    this.sellerId,
+    this.title,
+    this.code,
+    this.limit,
+    this.seller,
+    this.expireDate,
+    this.planExpireDate,
+    this.expireDatePlanText,
+    this.discount,
+    this.discountType,
+    this.minPurchase,
+    this.orderCount,
+  });
 
   Coupons.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -70,26 +69,24 @@ class Coupons {
     expireDate = json['expire_date'];
     planExpireDate = json['plain_expire_date'];
     expireDatePlanText = json['plain_expire_date'];
-    if(json['discount'] != null){
+    if (json['discount'] != null) {
       discount = json['discount'].toDouble();
     }
-    if(json['min_purchase'] != null){
+    if (json['min_purchase'] != null) {
       minPurchase = json['min_purchase'].toDouble();
     }
 
     discountType = json['discount_type'];
-    if(json['order_count'] != null){
-      try{
+    if (json['order_count'] != null) {
+      try {
         orderCount = json['order_count'];
-      }catch(e){
+      } catch (e) {
         orderCount = int.parse(json['order_count'].toString());
       }
-    }else{
+    } else {
       orderCount = 0;
     }
-
   }
-
 }
 
 class Seller {
@@ -98,11 +95,7 @@ class Seller {
   String? lName;
   Shop? shop;
 
-  Seller(
-      {this.id,
-        this.fName,
-        this.lName,
-        this.shop});
+  Seller({this.id, this.fName, this.lName, this.shop});
 
   Seller.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -110,21 +103,19 @@ class Seller {
     lName = json['l_name'];
     shop = json['shop'] != null ? Shop.fromJson(json['shop']) : null;
   }
-
 }
 
 class Shop {
   int? id;
   String? name;
 
-  Shop(
-      {this.id,
-        this.name,
-      });
+  Shop({
+    this.id,
+    this.name,
+  });
 
   Shop.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
   }
-
 }

@@ -496,7 +496,7 @@ class _HomePageState extends State<HomePage> {
                                     child: Text(
                                         prodProvider.title == 'xyz'
                                             ? getTranslated(
-                                                'new_arrival', context) !
+                                                'new_arrival', context)!
                                             : prodProvider.title!,
                                         style: titleHeader)),
                                 prodProvider.latestProductList != null
