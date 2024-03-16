@@ -5,7 +5,7 @@ class AppConstants {
   static const String appName = 'CIT GROUP SHOP';
   static const String slogan = 'E-Commerce Marketplace';
   static const String appVersion = '14.2';
-  static const String baseUrl = 'https://santhuongmai.citgroup.vn/';
+  static const String baseUrl = 'https://santhuongmai.citgroup.vn';
   static const String userId = 'userId';
   static const String name = 'name';
   static const String categoriesUri = '/api/v1/categories?guest_id=1';

@@ -1,4 +1,4 @@
-package com.sixamtech.sixvalley
+package com.citgroupvn.eshop.user
 
 import io.flutter.embedding.android.FlutterActivity
 
